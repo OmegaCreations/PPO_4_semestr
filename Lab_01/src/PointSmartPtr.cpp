@@ -1,7 +1,10 @@
 #include "PointSmartPtr.h"
 
+#include <utility>
+
 // Named class methods
 Named::Named() : _name("None"){}
+Named::Named(std::string name) : _name(name){}
 std::string Named::Name() const {
     return _name;
 }
@@ -13,13 +16,10 @@ void operator>>(const std::string& name, Named& obj) {
 
 // Point class
 // Constructors
-Point::Point() : _x(0), _y(0) {
-    Name() = "None";
-}
-Point::Point(int x, int y) : _x(x), _y(y){}
-Point::Point(int x, int y, std::string name) :  Point(x, y) {
-    Name() = name;
-}
+Point::Point() : Named("None"), _x(0), _y(0) {}
+Point::Point(std::nullptr_t): Named("None"), _x(0), _y(0) {}
+Point::Point(int x, int y) : Named("None"), _x(x), _y(y){}
+Point::Point(int x, int y, std::string  name) : Named(std::move(name)), _x(x), _y(y)  {}
 
 // operators
 Point Point::operator++(int) {

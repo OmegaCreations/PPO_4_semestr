@@ -45,7 +45,7 @@ int main() {
   "SuperPoint1" >> named;
   std::cout << "Named " << named.Name() << std::endl;
 
-  Point p;
+  Point p(nullptr);
   "SuperPoint2 ">> p;
   std::cout << "main scope... " << p << std::endl;
   PointSmartPtr p_sptr1(new Point(1,1));

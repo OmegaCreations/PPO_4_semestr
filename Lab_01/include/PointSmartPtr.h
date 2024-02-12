@@ -10,6 +10,9 @@ class Named {
 
     public:
     Named();
+    explicit Named(std::string name);
+
+    // returns name
     std::string Name() const;
 
     // input operator overload
@@ -18,16 +21,14 @@ class Named {
 
 // Point class
 class Point : public Named {
-    private:
+    public:
     int _x;
     int _y;
 
-    public:
     Point();
+    explicit Point(std::nullptr_t);
     Point(int x, int y);
     Point(int x, int y, std::string name);
-
-    std::string getData();
 
     // output operator overload
     friend std::ostream& operator<<(std::ostream& os, const Point& point);
@@ -45,7 +46,7 @@ class PointSmartPtr {
     public:
 
     // Constructors
-    PointSmartPtr(Point* ptr);
+    explicit PointSmartPtr(Point* ptr);
     PointSmartPtr(const PointSmartPtr& other);
     ~PointSmartPtr();
 
